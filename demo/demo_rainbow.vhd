@@ -15,6 +15,9 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.math_real.all;
 
+library ws2812b;
+use ws2812b.all;
+
 entity demo_rainbow is
 	port(
 		clk    : in  std_logic;
@@ -62,14 +65,13 @@ architecture RTL of demo_rainbow is
 	signal color_transition_start : color_transition_t;
 	signal pixCount               : integer range 0 to LENGTH - 1;
 	signal render_active          : std_logic;
-	signal render_stb             : std_logic;
 
 	signal systick : std_logic;
 begin
 	rst <= not rst_hw;
 
 	-- WS2812B PHY
-	ws2812b_phy_inst : entity work.ws2812b_phy
+	ws2812b_phy_inst : entity ws2812b.ws2812b_phy
 		generic map(
 			f_clk => F_CLK
 		)
@@ -85,23 +87,23 @@ begin
 		);
 
 	-- Gamma correction
-	ws2812b_gamma_red_inst : entity work.ws2812b_gamma
+	ws2812b_gamma_red_inst : entity ws2812b.ws2812b_gamma
 		port map(
 			pixelData_in  => std_logic_vector(pixData_red),
 			pixelData_out => pixData_red_corr
 		);
 
-	ws2812b_gamma_green_inst : entity work.ws2812b_gamma
+	ws2812b_gamma_green_inst : entity ws2812b.ws2812b_gamma
 		port map(
 			pixelData_in  => std_logic_vector(pixData_green),
 			pixelData_out => pixData_green_corr
 		);
 
-	ws2812b_gamma_blue_inst : entity work.ws2812b_gamma
+	ws2812b_gamma_blue_inst : entity ws2812b.ws2812b_gamma
 		port map(
 			pixelData_in  => std_logic_vector(pixData_blue),
 			pixelData_out => pixData_blue_corr
-		);
+			);
 
 	-- Timebase to advance the animation
 	systick_p : process(clk, rst) is

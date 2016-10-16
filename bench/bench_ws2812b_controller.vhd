@@ -15,8 +15,8 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.math_real.all;
 
-library design;
-use design.all;
+library ws2812b;
+use ws2812b.all;
 
 entity bench_ws2812b_controller is
 end entity bench_ws2812b_controller;
@@ -39,7 +39,7 @@ architecture RTL of bench_ws2812b_controller is
 	signal vsync         : std_logic;
 
 begin
-	ws2812b_controller_inst : entity design.ws2812b_controller
+	ws2812b_controller_inst : entity ws2812b.ws2812b_controller
 		generic map(
 			length => length,
 			f_clk  => 100000000)

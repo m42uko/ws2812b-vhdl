@@ -15,16 +15,19 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.math_real.all;
 
-entity top is
+library ws2812b;
+use ws2812b.all;
+
+entity demo_sram is
 	port(
 		clk    : in  std_logic;
 		rst_hw : in  std_logic;
 		btn_n  : in  std_logic;
 		so     : out std_logic
 	);
-end entity top;
+end entity demo_sram;
 
-architecture RTL of top is
+architecture RTL of demo_sram is
 	constant length : integer := 120;
 
 	signal rst           : std_logic;
@@ -39,12 +42,13 @@ architecture RTL of top is
 	signal render        : std_logic;
 	signal vsync         : std_logic;
 	signal done          : std_logic;
-	signal foo           : std_logic_vector(1 downto 0);
+	signal colIdx        : std_logic_vector(1 downto 0);
 begin
 	rst <= not rst_hw;
 
-	foo <= addr(1 downto 0);
-	ws2812b_controller_inst : entity work.ws2812b_controller
+	colIdx <= addr(1 downto 0);
+
+	ws2812b_controller_inst : entity ws2812b.ws2812b_controller
 		generic map(
 			length => length,
 			f_clk  => 50000000
@@ -84,20 +88,22 @@ begin
 			render <= '0';
 			if done = '0' then
 				addr <= std_logic_vector(unsigned(addr) + 1);
+
+				-- If we wrote the entire strip, render the data!
 				if to_integer(unsigned(addr)) = length - 1 then
 					done   <= '1';
 					render <= '1';
 				end if;
 
-				if unsigned(foo) = colRot then
+				if unsigned(colIdx) = colRot then
 					data_red   <= (others => '1');
 					data_green <= (others => '0');
 					data_blue  <= (others => '0');
-				elsif unsigned(foo) = colRot + 1 then
+				elsif unsigned(colIdx) = colRot + 1 then
 					data_red   <= (others => '0');
 					data_green <= (others => '1');
 					data_blue  <= (others => '0');
-				elsif unsigned(foo) = colRot + 2 then
+				elsif unsigned(colIdx) = colRot + 2 then
 					data_red   <= (others => '0');
 					data_green <= (others => '0');
 					data_blue  <= (others => '1');

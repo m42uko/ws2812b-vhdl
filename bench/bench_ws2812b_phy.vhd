@@ -13,8 +13,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-library design;
-use design.all;
+library ws2812b;
+use ws2812b.all;
 
 entity bench_ws2812b_phy is
 end entity bench_ws2812b_phy;
@@ -39,7 +39,7 @@ begin
 		wait for period / 2;
 	end process clock_driver;
 
-	ws2812b_phy_inst : entity design.ws2812b_phy
+	ws2812b_phy_inst : entity ws2812b.ws2812b_phy
 		generic map(
 			f_clk => 100000000
 		)
