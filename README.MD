@@ -28,14 +28,14 @@ For an example, see demo_sram.
 ### Rainbow
 Displays a simple moving rainbow pattern over a strip of fixed length.
 
-Make sure the '''F_CLK''' is set to the actual frequency present on the hardware for '''clk'''.
+Make sure the `F_CLK` is set to the actual frequency present on the hardware for `clk`.
 
-To set the length, change the '''LENGTH''' constant. To change the speed of the animation, change the '''F_SYSTICK''' constant. To change the length of one iteration of the rainbow, set the '''INCREMENT''' constant. To change the maximum brightness, change the '''PIXDATA_MAX''' constant while making sure that it is a multiple of '''INCREMENT'''.
+To set the length, change the `LENGTH` constant. To change the speed of the animation, change the `F_SYSTICK` constant. To change the length of one iteration of the rainbow, set the `INCREMENT` constant. To change the maximum brightness, change the `PIXDATA_MAX` constant while making sure that it is a multiple of `INCREMENT`.
 
 ### demo_sram
 Steps through some predefined colors by writing the to the controller's RAM and simply issuing a *render* strobe.
 
-Make sure the '''F_CLK''' is set to the actual frequency present on the hardware for '''clk'''.
+Make sure the `F_CLK` is set to the actual frequency present on the hardware for `clk`.
 
 ## License
 This work is released under the Mozilla Public License (MPL) Version 2. It may be interpreted in the same way the Open Hardware Description License (OHDL) by Julius Baxter does. Read more about it here: http://juliusbaxter.net/ohdl/ohdl.txt
