@@ -121,7 +121,7 @@ begin
 			end if;
 		end if;
 	end process systick_p;
-	
+
 	-- Animation generator and renderer
 	rainbow_p : process(clk, rst) is
 		procedure incr(signal col : inout unsigned(7 downto 0); next_transition : in color_transition_t; is_live : boolean) is
@@ -149,24 +149,22 @@ begin
 		end procedure;
 	begin
 		if rst = '1' then
-			pixData_red           <= to_unsigned(PIXDATA_MAX, pixData_red'length);
-			pixData_green         <= (others => '0');
-			pixData_blue          <= (others => '0');
-			pixData_red_start     <= to_unsigned(PIXDATA_MAX, pixData_red'length);
-			pixData_green_start   <= (others => '0');
-			pixData_blue_start    <= (others => '0');
-			--pixData_valid         <= '0';
-			color_transition_live <= RY;
-			pixCount              <= 0;
-			render_active         <= '0';
+			pixData_red            <= to_unsigned(PIXDATA_MAX, pixData_red'length);
+			pixData_green          <= (others => '0');
+			pixData_blue           <= (others => '0');
+			pixData_red_start      <= to_unsigned(PIXDATA_MAX, pixData_red'length);
+			pixData_green_start    <= (others => '0');
+			pixData_blue_start     <= (others => '0');
+			color_transition_live  <= RY;
+			color_transition_start <= RY;
+			pixCount               <= 0;
+			render_active          <= '0';
 		elsif rising_edge(clk) then
 			-- Render one strip
 			if render_active = '1' then
 				if pixData_next = '1' then
-					--pixData_valid <= '1';
 					if pixCount = LENGTH - 1 then
 						pixCount      <= 0;
-						--pixData_valid <= '0'; -- Insert inter-strip delay
 						render_active <= '0';
 					else
 						pixCount <= pixCount + 1;
