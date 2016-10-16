@@ -1,0 +1,35 @@
+[*]
+[*] GTKWave Analyzer v3.3.76 (w)1999-2016 BSI
+[*] Sun Oct 16 10:39:02 2016
+[*]
+[dumpfile] "/tmp/SigasiCompileCache1957728051622960465/ws2812b/mentor/bench_demo_rainbow.ghw"
+[dumpfile_mtime] "Sun Oct 16 10:38:54 2016"
+[dumpfile_size] 74301336
+[savefile] "/home/markus/projects/sigasiStudio/ws2812b/gtkwave/bench_demo_rainbow.gtkw"
+[timestart] 7400000000000
+[size] 1920 1023
+[pos] -1 -1
+*-36.518665 7757800000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.bench_demo_rainbow.
+[treeopen] top.bench_demo_rainbow.demo_rainbow_inst.
+[sst_width] 205
+[signals_width] 183
+[sst_expanded] 1
+[sst_vpaned_height] 293
+@22
+#{top.bench_demo_rainbow.demo_rainbow_inst.pixdata_red[7:0]} top.bench_demo_rainbow.demo_rainbow_inst.pixdata_red[7] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_red[6] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_red[5] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_red[4] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_red[3] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_red[2] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_red[1] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_red[0]
+#{top.bench_demo_rainbow.demo_rainbow_inst.pixdata_green[7:0]} top.bench_demo_rainbow.demo_rainbow_inst.pixdata_green[7] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_green[6] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_green[5] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_green[4] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_green[3] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_green[2] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_green[1] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_green[0]
+#{top.bench_demo_rainbow.demo_rainbow_inst.pixdata_blue[7:0]} top.bench_demo_rainbow.demo_rainbow_inst.pixdata_blue[7] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_blue[6] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_blue[5] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_blue[4] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_blue[3] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_blue[2] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_blue[1] top.bench_demo_rainbow.demo_rainbow_inst.pixdata_blue[0]
+@28
+top.bench_demo_rainbow.demo_rainbow_inst.pixcount
+top.bench_demo_rainbow.demo_rainbow_inst.color_transition
+top.bench_demo_rainbow.demo_rainbow_inst.pixdata_next
+top.bench_demo_rainbow.demo_rainbow_inst.pixdata_valid
+top.bench_demo_rainbow.demo_rainbow_inst.rst
+top.bench_demo_rainbow.demo_rainbow_inst.so
+top.bench_demo_rainbow.demo_rainbow_inst.btn_n
+top.bench_demo_rainbow.demo_rainbow_inst.rst_hw
+top.bench_demo_rainbow.demo_rainbow_inst.clk
+[pattern_trace] 1
+[pattern_trace] 0

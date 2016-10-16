@@ -21,7 +21,7 @@ entity ws2812b_phy is
 		T1H   : real    := 0.0000009;
 		T0L   : real    := 0.0000009;
 		T1L   : real    := 0.00000035;
-		DEL   : real    := 0.0000000;   -- 0.0000001
+		DEL   : real    := 0.0000001;   -- 0.0000001
 		RES   : real    := 0.00005000   -- Must be bigger than others
 	);
 	port(

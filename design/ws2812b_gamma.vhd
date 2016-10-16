@@ -2,7 +2,7 @@
 --                         WS2812B CONTROLLER FOR FPGAS                        
 -- ----------------------------------------------------------------------------
 -- ws2812b_gamma.vhd : Gamma correction RAM for the WS2812B LEDs.
---                   : Not yet implemented.
+--                   : Do note that this generates a (fairly large, async) LUT.
 -- ----------------------------------------------------------------------------
 -- Author          : Markus Koch <markus@notsyncing.net>
 -- Contributors    : None 
@@ -16,14 +16,14 @@ use ieee.numeric_std.all;
 
 entity ws2812b_gamma is
 	port(
-		clk : in std_logic;
-		rst : in std_logic
+		pixelData_in  : in  std_logic_vector(7 downto 0);
+		pixelData_out : out std_logic_vector(7 downto 0)
 	);
 end entity ws2812b_gamma;
 
 architecture RTL of ws2812b_gamma is
 	type gamma_table_t is array (0 to 255) of std_logic_vector(7 downto 0);
-	constant gamme_table : gamma_table_t := (
+	constant gamma_table : gamma_table_t := (
 		0   => std_logic_vector(to_unsigned(0, 8)),
 		1   => std_logic_vector(to_unsigned(0, 8)),
 		2   => std_logic_vector(to_unsigned(0, 8)),
@@ -280,6 +280,7 @@ architecture RTL of ws2812b_gamma is
 		253 => std_logic_vector(to_unsigned(250, 8)),
 		254 => std_logic_vector(to_unsigned(252, 8)),
 		255 => std_logic_vector(to_unsigned(255, 8))
-		);
-	begin
-	end architecture RTL;
+	);
+begin
+	pixelData_out  <= gamma_table(to_integer(unsigned(pixelData_in)));
+end architecture RTL;
