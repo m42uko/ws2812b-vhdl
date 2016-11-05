@@ -13,7 +13,45 @@ For directories containing VHDL source files, the directory name denotes the VHD
 ### ws2812b_phy
 Low level driver for the WorldSemi WS2812B RGB LEDs. Handles bit timing and command separation. 
 
-*Documentation coming soon*
+<pre>
+                                        +    +
+                                        |    |
+                                        |    |
++-----------+    +----------------------v----v------+
+|           +----> pixData_red[7:0]    clk  rst     |
+|           |    |                                  |
+|           +----> pixData_green[7:0]               |
+|           |    |                                  |    +----+
+|   User    +----> pixData_blue[7:0]             so +---->LEDs|
+|   Logic   |    |                                  |    +----+
+|           |    |                                  |
+|           +----> pixData_valid                    |
+|           |    |                                  |
+|           <----+ pixData_next                     |
++-----------+    +----------------------------------+
+
+        _   _   _   _   _   _         _   _   _   _         _   _   _   _
+clk   _/ \_/ \_/ \_/ \_/ \_/ \_   / /  \_/ \_/ \_/ \_   / /  \_/ \_/ \_/ \_
+                _______ _______  / /  _______          / /
+data  ---------<_______X_______ |  |  _______>------- | |   ----------------
+                _______________ \  \  _______          \ \
+valid _________/                 \  \        \_______   \ \ ________________
+                    ___          |  |     ___           | |      ___
+next  _____________/   \_______  /  / ___/   \_______   / / ____/   \_______
+                                /  /                   / /
+               1   2   3                 4   5                  6
+
+1: User applies first LED's data and asserts pixData_valid.
+2: PHY acknowledges that it latched the data and starts supplying the
+   information to the LED string.
+3: User logic sees the pixData_next strobe and prepares the next data.
+4: Next data is latched. Steps 3 and 4 are to be repeated until each LED in
+   the string has been given a value.
+5: User logic sees the pixData_next strobe. As all LEDs have already been
+   given a value, pixData_valid is deasserted to signal the end of a string.
+6: The completion of the reset time is signalled using another
+   pixData_next strobe.
+</pre>
 
 For an example, see Rainbow.
 
